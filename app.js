@@ -1,4 +1,4 @@
-var app = angular.module('plunker', ['ui.mask']);
+var app = angular.module('myApp', ['ui.mask']);
 
 app.controller('MainCtrl',['$scope', function($scope) {
   var vm = this;
@@ -7,7 +7,7 @@ app.controller('MainCtrl',['$scope', function($scope) {
   vm.phoneMask = '9999 999 999';
   vm.regExpPhone =  '^[1,0]\\d{9}$';
   vm.regExpMobilePrefix =  '(^[1][38]00)|(^04)';
-  vm.name = 'Example';
+  vm.name = 'Ui Mask';
   vm.phone = '';
   vm.phone1 = '';
   vm.pholder = '99 9999 9999';
@@ -43,8 +43,14 @@ app.directive('customPlaceholder', [function () {
     //     console.log(element);
     //     console.log(scope.pholder);
     //     //element.removeAttr('placeholder');
-    //     //element.attr('placeholder', '04 0000 000')
-    //     //attr.$set('placeholder', '04 0000 0000')
+    //     //element.attr('placeholder', '04XX XXX XXX')
+
+    //     if (!scope.pholder) {
+    //       attr.$set('uiMask', '9999 999 999');
+    //       attr.$set('placeholder', '04XX XXX XXX')
+    //     }
+
+
     //  // element.addAttribute('placeholder', scope.pholder)
     //   });
 //                 ui-mask="{{vm.phoneMask}}"
