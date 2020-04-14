@@ -63,6 +63,14 @@ app.directive('customPlaceholder', [function () {
     //     }
     //   });
 
+    element.on('keyup', function(){
+      if(!scope.pholder){
+        return;
+      };
+      maskPhoneNumber();
+    });
+
+
 
       element.on('focusout', function(){
         if(!scope.pholder){
@@ -70,28 +78,33 @@ app.directive('customPlaceholder', [function () {
           // scope.pholder = '9999 999 999';
           attr.$set('placeholder', '04XX XXX XXX');
         }
-        else{
-          var defaultMask = '(99) 9999 9999';
-          var mobileMask = '9999 999 999';
-          var regExpMobilePrefix = '(^[1][38]00)|(^04)';
-          var regExpPhone = '^[1,0]\\d{9}$';
-          var re = new RegExp(regExpMobilePrefix);
-
-          if (scope.pholder.match(re)) {
-            //vm.phoneMask = mobileMask;
-            attr.$set('uiMask', '9999 999 999');
-            attr.$set('placeholder', '04XX XXX XXX');
-            // scope.holder = '9999 999 999';
-          }
-          else {
-            // vm.phoneMask = defaultMask;
-            attr.$set('uiMask', '(99) 9999 9999');
-            attr.$set('placeholder', '(__) ____ ____');
-            // scope.pholder = '(99) 9999 9999';
-          }
-        }
+        // else{
+        //   maskPhoneNumber();
+        // }
       });
 
+
+  function maskPhoneNumber(){
+    var defaultMask = '(99) 9999 9999';
+    var mobileMask = '9999 999 999';
+    var regExpMobilePrefix = '(^[1][38]00)|(^04)';
+    var regExpPhone = '^[1,0]\\d{9}$';
+    var re = new RegExp(regExpMobilePrefix);
+
+    if (scope.pholder.match(re)) {
+      //vm.phoneMask = mobileMask;
+      attr.$set('uiMask', '9999 999 999');
+      attr.$set('placeholder', '____ ___ ___');
+      // scope.holder = '9999 999 999';
     }
+    else {
+      // vm.phoneMask = defaultMask;
+      attr.$set('uiMask', '(99) 9999 9999');
+      attr.$set('placeholder', '(__) ____ ____');
+      // scope.pholder = '(99) 9999 9999';
+    }
+  }
+
+}
   }
 }]);
